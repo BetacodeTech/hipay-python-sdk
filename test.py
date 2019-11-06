@@ -3,7 +3,7 @@ from HiPayMBService import HiPayMBService
 
 class HiPayTesy(unittest.TestCase):
     def setUp(self):
-        self.hipay_mb_service = HiPayMBService(username="hp64959141", password="rafik19")
+        self.hipay_mb_service = HiPayMBService(username="*", password="*")
 
     def tearDown(self):
         pass
