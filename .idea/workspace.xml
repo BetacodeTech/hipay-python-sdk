@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9af570c9-ae90-4bb4-a9c2-32d2e3fa6684" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/hipay-integration.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hipay-integration.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hipay_python_sdk/HiPayMBService.py" beforeDir="false" afterPath="$PROJECT_DIR$/hipay_python_sdk/HiPayMBService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hipay_python_sdk/HiPayPayshopService.py" beforeDir="false" afterPath="$PROJECT_DIR$/hipay_python_sdk/HiPayPayshopService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hipay_python_sdk/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/hipay_python_sdk/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +165,7 @@
       <workItem from="1575477687271" duration="2838000" />
       <workItem from="1575484973633" duration="326000" />
       <workItem from="1575487737365" duration="35000" />
-      <workItem from="1575545313732" duration="2496000" />
+      <workItem from="1575545313732" duration="3175000" />
     </task>
     <servers />
   </component>

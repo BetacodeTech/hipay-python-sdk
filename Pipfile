@@ -5,6 +5,7 @@ verify_ssl = true
 
 [packages]
 zeep = "*"
+twine = "*"
 
 [requires]
 python_version = "3.7"
