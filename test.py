@@ -1,12 +1,20 @@
 import unittest
 from hipay_python_sdk.HiPayMBService import HiPayMBService
 from hipay_python_sdk.HiPayPayshopService import HiPayPayshopService
+from hipay_python_sdk.HiPayCreditService import HiPayCreditService
 
 
 class HiPayTest(unittest.TestCase):
     def setUp(self):
         self.hipay_mb_service = HiPayMBService(username="*", password="*")
         self.hipay_payshop_service = HiPayPayshopService(username="*", password="*")
+        self.hipay_credit_service = HiPayCreditService(ws_login="1b0440cfb702df4312be974ba35ae335",
+                                                       ws_password="3b9084471988203899411cf62749bf33",
+                                                       callback_email="vgbetacode@gmail.com",
+                                                       url_callback="http://dev.api.paymentgateways.betacode.tech/v1/hipay/credit_payment/callback",
+                                                       url_decline="http://dev.api.paymentgateways.betacode.tech/v1/hipay/credit_payment/decline",
+                                                       url_cancel="http://dev.api.paymentgateways.betacode.tech/v1/hipay/credit_payment/cancel",
+                                                       url_logo="https://trello-attachments.s3.amazonaws.com/5d0795d0a145ea1c06ca85d9/5d9dbd6a82de740fec5a4228/8182f9ebb57ed1f0cb8d93375b7f0f75/logo_youpi2.png")
 
     def tearDown(self):
         pass
@@ -49,3 +57,10 @@ class HiPayTest(unittest.TestCase):
         self.assertIsNotNone(reference_info)
         self.assertIsNotNone(reference_info["paid"])
         self.assertIsNotNone(reference_info["status"])
+
+    def testGenerateCreditPaymentPage(self):
+        generated_page = self.hipay_credit_service.generate_payment(website_id=573633, category_id=665, amount=11.0,
+                                                                    customer_email="tiago.marques@betacode.tech")
+
+        self.assertIsNotNone(generated_page)
+
