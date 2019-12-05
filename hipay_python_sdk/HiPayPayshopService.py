@@ -1,5 +1,6 @@
 import zeep
 
+
 class HiPayPayshopService:
 
     def __init__(self, username, password, wsdl='https://comprafacil2.hipay.pt/webservice/comprafacilWS.asmx?WSDL'):
@@ -8,10 +9,9 @@ class HiPayPayshopService:
         self.password = password
 
     def get_reference_payshop(self, email, amount, origin="", additionalInfo="", name="", address="", postCode="",
-                              city="", NIC="", externalReference="", contactPhone="", IDUserBackoffice=-1, sendEmailBuyer=True):
-
-
-        genereated_reference = self.client.service.getReferencePS(
+                              city="", NIC="", externalReference="", contactPhone="", IDUserBackoffice=-1,
+                              sendEmailBuyer=True):
+        generated_reference = self.client.service.getReferencePS(
             username=self.username,
             password=self.password,
             email=email,
@@ -29,7 +29,7 @@ class HiPayPayshopService:
             sendEmailBuyer=sendEmailBuyer
         )
 
-        return genereated_reference
+        return generated_reference
 
     def get_info_reference(self, reference):
         reference_info = self.client.service.getInfoReference(reference=reference, username=self.username, password=self.password)

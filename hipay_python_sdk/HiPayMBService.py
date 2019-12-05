@@ -9,10 +9,9 @@ class HiPayMBService:
         self.password = password
 
     def get_reference_mb(self, email, amount, origin="", additionalInfo="", name="", address="", postCode="",
-                              city="", NIC="", externalReference="", contactPhone="", IDUserBackoffice=-1,
-                              timeLimitDays=-1, sendEmailBuyer=True):
-
-        genereated_reference = self.client.service.getReferenceMB(
+                         city="", NIC="", externalReference="", contactPhone="", IDUserBackoffice=-1,
+                         timeLimitDays=-1, sendEmailBuyer=True):
+        generated_reference = self.client.service.getReferenceMB(
             username=self.username,
             password=self.password,
             email=email,
@@ -31,7 +30,7 @@ class HiPayMBService:
             sendEmailBuyer=sendEmailBuyer
         )
 
-        return genereated_reference
+        return generated_reference
 
     def get_info_reference(self, reference):
         reference_info = self.client.service.getInfoReference(reference=reference, username=self.username, password=self.password)
