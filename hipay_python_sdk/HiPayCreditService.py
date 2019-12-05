@@ -1,5 +1,8 @@
 import zeep
 
+class Struct:
+    def __init__(self, **entries):
+        self.__dict__.update(entries)
 
 class HiPayCreditService:
     def __init__(self, ws_login, ws_password, callback_email, url_callback=None, url_decline=None, url_cancel=None,
@@ -28,12 +31,54 @@ class HiPayCreditService:
             "manualCapture": manual_capture,
             "customerEmail": customer_email,
             "emailCallback": self.callback_email,
+            "urlAccept": "",
             "urlCallback": self.url_callback,
             "urlDecline": self.url_decline,
             "urlCancel": self.url_cancel,
             "urlLogo": self.url_logo,
             "wsLogin": self.ws_login,
-            "wsPassword": self.ws_password
+            "wsPassword": self.ws_password,
+            "subscriptionId": "",
+            "merchantReference": "",
+            "executionDate": "",
+            "merchantComment": "",
+            "bankReportLabel": "",
+            "freeData": {},
+            "affiliates": {},
+            "items": {},
+            "shopId": "",
+            "thirdPartySecurity": "",
+            "accountInfo": {
+                "customer": {
+                    "accountChange": "",
+                    "openingAccountDate": "",
+                    "passwordChange": "",
+                },
+                "purchase": {
+                    "count": "",
+                    "cardStored24h": "",
+                    "paymentAttempts24h": "",
+                    "paymentAttempts1y": ""
+                },
+                "shipping": {
+                    "shippingUsedDate": "",
+                    "nameIndicator": "",
+                    "suspiciousActivity": "",
+                }
+            },
+            "merchantRiskStatement": {
+                "deliveryTimeFrame": "",
+                "emailDeliveryAddress": "",
+                "purchaseIndicator": "",
+                "preOrderDate": "",
+                "reorderIndicator": "",
+                "shippingIndicator": "",
+            },
+            "exemption": "",
+            "method": "",
+            "wsSubAccountLogin": "",
+            "wsSubAccountId": "",
+            "authenticationToken": "",
         }
 
         return self.client.service.generate(parameters=request_data)
