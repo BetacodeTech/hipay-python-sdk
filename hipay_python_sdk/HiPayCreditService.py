@@ -38,8 +38,7 @@ def create_xml_envelope(data):
 
 class HiPayCreditService:
     def __init__(self, ws_login, ws_password, callback_email, url_callback='', url_accept='', url_decline='',
-                 url_cancel='', url_logo='', wsdl='https://test-ws.hipay.com/soap/payment-v2?wsdl'):
-        self.client = zeep.Client(wsdl=wsdl)
+                 url_cancel='', url_logo=''):
         self.ws_login = ws_login
         self.ws_password = ws_password
         self.callback_email = callback_email
@@ -49,10 +48,9 @@ class HiPayCreditService:
         self.url_cancel = url_cancel
         self.url_logo = url_logo
 
-    def generate_payment(self, website_id, category_id, amount, customer_email, currency="EUR", rating="ALL",
+    def generate_payment(self, hipay_url, website_id, category_id, amount, customer_email, currency="EUR", rating="ALL",
                          locale="pt_PT", customer_ip_address="127.0.0.1", description="Default description",
                          manual_capture=False):
-        url = 'https://test-ws.hipay.com/soap/payment-v2'
         header = {'Content-type': 'text/xml'}
         request_data = {
             "website_id": website_id,
@@ -76,7 +74,7 @@ class HiPayCreditService:
         }
 
         envelope = create_xml_envelope(request_data)
-        response = requests.post(url=url, data=envelope, headers=header)
+        response = requests.post(url=hipay_url, data=envelope, headers=header)
         response_xml = xmltodict.parse(response.content)
         generate_result = response_xml['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:generateResponse']['generateResult']
         redirect_url = generate_result['redirectUrl']

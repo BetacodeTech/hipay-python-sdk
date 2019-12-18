@@ -55,7 +55,8 @@ class HiPayTest(unittest.TestCase):
         self.assertIsNotNone(reference_info["status"])
 
     def testGenerateHiPayCreditPayment(self):
-        redirect_url = self.hipay_credit_service.generate_payment(website_id=573633, category_id=665, amount=12.0,
+        redirect_url = self.hipay_credit_service.generate_payment(hipay_url="https://test-ws.hipay.com/soap/payment-v2",
+                                                                  website_id=573633, category_id=665, amount=12.0,
                                                                   customer_email='tiago.marques@betacode.tech')
 
         self.assertIsNotNone(redirect_url)
