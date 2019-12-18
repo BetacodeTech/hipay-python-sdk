@@ -17,9 +17,10 @@ class HiPayCreditService:
     @staticmethod
     def create_xml_envelope(hipay_url, data):
         envelope = f'''
-                    <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1={hipay_url} xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                       <SOAP-ENV:Body>
-                          <ns1:generate>
+                    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pay="{hipay_url}">
+                       <soapenv:Header/>
+                       <soapenv:Body>
+                          <pay:generate>
                              <parameters>
                                 <websiteId>{data['website_id']}</websiteId>
                                 <categoryId>{data['category_id']}</categoryId>
@@ -40,9 +41,9 @@ class HiPayCreditService:
                                 <wsLogin>{data['ws_login']}</wsLogin>
                                 <wsPassword>{data['ws_password']}</wsPassword>
                              </parameters>
-                          </ns1:generate>
-                       </SOAP-ENV:Body>
-                    </SOAP-ENV:Envelope>
+                          </pay:generate>
+                       </soapenv:Body>
+                    </soapenv:Envelope>
                     '''
 
         return envelope
