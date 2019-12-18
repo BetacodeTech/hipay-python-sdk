@@ -1,39 +1,5 @@
-import zeep
 import requests
 import xmltodict
-
-
-def create_xml_envelope(data):
-    envelope = f'''
-                <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="https://test-ws.hipay.com/soap/payment-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                   <SOAP-ENV:Body>
-                      <ns1:generate>
-                         <parameters>
-                            <websiteId>{data['website_id']}</websiteId>
-                            <categoryId>{data['category_id']}</categoryId>
-                            <currency>{data['currency']}</currency>
-                            <amount>{data['amount']}</amount>
-                            <rating>{data['rating']}</rating>
-                            <locale>{data['locale']}</locale>
-                            <customerIpAddress>{data['customer_ip_address']}</customerIpAddress>
-                            <description>{data['description']}</description>
-                            <manualCapture>{data['manual_capture']}</manualCapture>
-                            <customerEmail>{data['customer_email']}</customerEmail>
-                            <emailCallback>{data['email_callback']}</emailCallback>
-                            <urlCallback>{data['url_callback']}</urlCallback>
-                            <urlAccept>{data['url_accept']}</urlAccept>
-                            <urlDecline>{data['url_decline']}</urlDecline>
-                            <urlCancel>{data['url_cancel']}</urlCancel>
-                            <urlLogo>{data['url_logo']}</urlLogo>
-                            <wsLogin>{data['ws_login']}</wsLogin>
-                            <wsPassword>{data['ws_password']}</wsPassword>
-                         </parameters>
-                      </ns1:generate>
-                   </SOAP-ENV:Body>
-                </SOAP-ENV:Envelope>
-                '''
-
-    return envelope
 
 
 class HiPayCreditService:
@@ -47,6 +13,38 @@ class HiPayCreditService:
         self.url_decline = url_decline
         self.url_cancel = url_cancel
         self.url_logo = url_logo
+
+    def create_xml_envelope(data, hipay_url):
+        envelope = f'''
+                    <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1={hipay_url} xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                       <SOAP-ENV:Body>
+                          <ns1:generate>
+                             <parameters>
+                                <websiteId>{data['website_id']}</websiteId>
+                                <categoryId>{data['category_id']}</categoryId>
+                                <currency>{data['currency']}</currency>
+                                <amount>{data['amount']}</amount>
+                                <rating>{data['rating']}</rating>
+                                <locale>{data['locale']}</locale>
+                                <customerIpAddress>{data['customer_ip_address']}</customerIpAddress>
+                                <description>{data['description']}</description>
+                                <manualCapture>{data['manual_capture']}</manualCapture>
+                                <customerEmail>{data['customer_email']}</customerEmail>
+                                <emailCallback>{data['email_callback']}</emailCallback>
+                                <urlCallback>{data['url_callback']}</urlCallback>
+                                <urlAccept>{data['url_accept']}</urlAccept>
+                                <urlDecline>{data['url_decline']}</urlDecline>
+                                <urlCancel>{data['url_cancel']}</urlCancel>
+                                <urlLogo>{data['url_logo']}</urlLogo>
+                                <wsLogin>{data['ws_login']}</wsLogin>
+                                <wsPassword>{data['ws_password']}</wsPassword>
+                             </parameters>
+                          </ns1:generate>
+                       </SOAP-ENV:Body>
+                    </SOAP-ENV:Envelope>
+                    '''
+
+        return envelope
 
     def generate_payment(self, hipay_url, website_id, category_id, amount, customer_email, currency="EUR", rating="ALL",
                          locale="pt_PT", customer_ip_address="127.0.0.1", description="Default description",
@@ -73,7 +71,7 @@ class HiPayCreditService:
             "ws_password": self.ws_password,
         }
 
-        envelope = create_xml_envelope(request_data)
+        envelope = create_xml_envelope(request_data, hipay_url)
         response = requests.post(url=hipay_url, data=envelope, headers=header)
         response_xml = xmltodict.parse(response.content)
         generate_result = response_xml['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:generateResponse']['generateResult']
