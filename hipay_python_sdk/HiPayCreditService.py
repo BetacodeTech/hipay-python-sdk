@@ -14,7 +14,8 @@ class HiPayCreditService:
         self.url_cancel = url_cancel
         self.url_logo = url_logo
 
-    def create_xml_envelope(data, hipay_url):
+    @staticmethod
+    def create_xml_envelope(hipay_url, data):
         envelope = f'''
                     <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1={hipay_url} xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                        <SOAP-ENV:Body>
@@ -71,7 +72,7 @@ class HiPayCreditService:
             "ws_password": self.ws_password,
         }
 
-        envelope = create_xml_envelope(request_data, hipay_url)
+        envelope = self.create_xml_envelope(hipay_url, request_data)
         response = requests.post(url=hipay_url, data=envelope, headers=header)
         response_xml = xmltodict.parse(response.content)
         generate_result = response_xml['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:generateResponse']['generateResult']
