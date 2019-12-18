@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9af570c9-ae90-4bb4-a9c2-32d2e3fa6684" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hipay_python_sdk/HiPayCreditService.py" beforeDir="false" afterPath="$PROJECT_DIR$/hipay_python_sdk/HiPayCreditService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +168,7 @@
       <workItem from="1575905547869" duration="382000" />
       <workItem from="1575905942389" duration="5907000" />
       <workItem from="1576684296151" duration="1765000" />
-      <workItem from="1576687124875" duration="59000" />
+      <workItem from="1576687124875" duration="365000" />
     </task>
     <servers />
   </component>
